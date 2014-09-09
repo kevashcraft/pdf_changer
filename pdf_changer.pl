@@ -28,7 +28,7 @@ BEGIN {
 # String Values
 my $search_string = "";
 my $change_string = "";
-my $pdf_name = "";
+#my $pdf_name = "";
 
 # Create Empty Strings
 my $pdf;
@@ -63,12 +63,12 @@ while(my $conn = $server->accept()) {
 			$pdf = $part->bodyhandle->{MB_Path};
 			my $fname = basename($pdf); 
 			my $dir = dirname($pdf); 
-			$pdf = "$dir/$pdf_name";
+			#$pdf = "$dir/$pdf_name";
 			chdir $dir;
 			# run the pdftk commands to change the pdf attachment
 			system("pdftk $fname output ${fname}_out uncompress");
 			system("sed -i 's/$search_string/$change_string/gI' ${fname}_out");
-			system("pdftk ${fname}_out output $pdf_name compress");
+			system("pdftk ${fname}_out output $fname compress");
 
 		}
 	}
