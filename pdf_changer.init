@@ -19,14 +19,12 @@ case "$1" in
   stop)
  echo -n "Stopping $DESC: "
  # --quiet
- start-stop-daemon --stop --signal 15 --pidfile /var/run/$NAME.pid \
-  --exec /usr/bin/perl --startas $DAEMON
+ start-stop-daemon --stop --signal 15 --pidfile /var/run/$NAME.pid
  echo "$NAME."
  ;;
   restart|force-reload)
  echo -n "Restarting $DESC: "
- start-stop-daemon --stop --quiet --pidfile \
-  /var/run/$NAME.pid --exec /usr/bin/perl --startas $DAEMON
+ start-stop-daemon --stop --quiet --pidfile 
  sleep 1
  start-stop-daemon --start --quiet --pidfile \
   /var/run/$NAME.pid --exec /usr/bin/perl --startas $DAEMON
